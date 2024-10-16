@@ -1,10 +1,11 @@
 import './App.css'
-import MyComponent from './component/MyComponent';
-
+import SimpleForm  from './component/Form';
 function App() {
   return (
-    <MyComponent/>
+    <>
+    <SimpleForm/>
+    </>
   )
 }
 
-export default App
+export default App;
