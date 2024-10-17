@@ -1,0 +1,121 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Lighter background to match the second image */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    background-color: rgba(14, 63, 196, 0.473);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #08a1dde5;
+    padding: 2rem;
+    width: 400px;
+    text-align: left; /* Align text to the left */
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    color: black;
+    font-size: 24px; /* Match size closer to second image */
+    margin-bottom: 1.5rem; /* Add space below heading */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%; /* Full width of the input box */
+    padding: 15px;
+    border: 2px solid #ccc; /* Lighter border */
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 0.5rem;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.submit-btn {
+    background-color: #f44336; /* Red button background to match */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Full width button */
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Google and Microsoft buttons */
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%; /* Full width button */
+    transition: background-color 0.3s ease;
+}
+
+.google-btn {
+    background-color: #db4437;
+    color: white;
+}
+
+.microsoft-btn {
+    background-color: #1a73e8;
+    color: white;
+}
+
+.social-btn:hover {
+    opacity: 0.8; /* Slight transparency effect on hover */
+}
+
+.google-btn:hover {
+    background-color: #c1351d;
+}
+
+.microsoft-btn:hover {
+    background-color: #1357d7;
+}
+
+/* Icon styles inside the social buttons */
+.social-btn i {
+    margin-right: 10px;
+    font-size: 20px;
+}
