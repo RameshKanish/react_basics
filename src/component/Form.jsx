@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const SimpleForm = () => {
-    const navigate = useNavigate();  // Initialize navigate function
+    // const navigate = useNavigate();  // Initialize navigate function
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,28 +16,28 @@ const SimpleForm = () => {
         event.preventDefault();
         console.log("Data", data);
 
-        fetch('http://localhost:8080/auth/signUp', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Response Data:", data);
-            if (data.id) {
-                console.log("User ID:", data.id);
-                window.location.href = 'https://www.zoho.com/';
-                // navigate('https://www.zoho.com/');  // Redirect using navigate
-            } else {
-                alert('Sign-up failed!');
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert('An error occurred during sign-up');
-        });
+        // fetch('http://localhost:8080/auth/signUp', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log("Response Data:", data);
+        //     if (data.id) {
+        //         console.log("User ID:", data.id);
+        //         window.location.href = 'https://www.zoho.com/';
+        //         // navigate('https://www.zoho.com/');  // Redirect using navigate
+        //     } else {
+        //         alert('Sign-up failed!');
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error("Error:", error);
+        //     alert('An error occurred during sign-up');
+        // });
     };
 
     return (
