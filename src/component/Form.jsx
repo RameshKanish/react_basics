@@ -1,35 +1,39 @@
 import { useState } from "react";
 import "../assets/styles/SimpleForm.css";  // Assuming your CSS is correctly linked
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";  // Import useNavigate hook
 
 const SimpleForm = () => {
-    // const navigate = useNavigate();  // Initialize navigate function
+    const navigate = useNavigate();  // Initialize navigate function
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         const data = { name, email, password };
 
-        event.preventDefault();
-        console.log("Data", data);
+        console.log("Data", data);  // Log data to verify it's correct
 
-        fetch('http://localhost:8080/auth/signUp', {
+        fetch('https://moviebookingsystem.onrender.com/auth/signUp', {  // Use deployed backend URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log("Response Data:", data);
             if (data.id) {
+                // Redirect after successful sign-up
                 console.log("User ID:", data.id);
-                window.location.href = 'https://www.zoho.com/';
-                // navigate('https://www.zoho.com/');  // Redirect using navigate
+                navigate('/dashboard');  // Redirect to a different page on success
             } else {
                 alert('Sign-up failed!');
             }
@@ -87,6 +91,5 @@ const SimpleForm = () => {
         </div>
     );
 };
-
 
 export default SimpleForm;
