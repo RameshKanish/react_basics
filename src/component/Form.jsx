@@ -15,7 +15,7 @@ const SimpleForm = () => {
 
         console.log("Data", data);  // Log data to verify it's correct
 
-        fetch('https://moviebookingsystem.onrender.com/auth/signUp', {  // Use deployed backend URL
+        fetch('https://moviebookingsystem-1.onrender.com/auth/signUp', {  // Use deployed backend URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
