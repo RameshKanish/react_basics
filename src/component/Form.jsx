@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../assets/styles/SimpleForm.css";  // Assuming your CSS is correctly linked
 import { useNavigate } from "react-router-dom";  // Import useNavigate hook
+import axios from "axios";
 
 const SimpleForm = () => {
     const navigate = useNavigate();  // Initialize navigate function
@@ -15,36 +16,19 @@ const SimpleForm = () => {
 
         console.log("Data", data);  // Log data to verify it's correct
 
-        fetch('https://cinemate-pmv2.onrender.com/auth/signUp', {
-        method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // Allow all origins (can be restricted to specific domains)
-    },
-    body: JSON.stringify(data),
-    mode: 'cors', // This explicitly enables CORS
-    credentials: 'same-origin' // If needed, include credentials like cookies (optional)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
+        axios.post('https://cinemate-pmv2.onrender.com/auth/signUp', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*', // Allow all origins (can be restricted to specific domains)
+            },
+            withCredentials: true // If you need to send cookies or other credentials with the request
         })
-        .then(data => {
-            console.log("Response Data:", data);
-            if (data.id) {
-                // Redirect after successful sign-up
-                console.log("User ID:", data.id);
-                navigate('/dashboard');  // Redirect to a different page on success
-            } else {
-                alert('Sign-up failed!');
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert('An error occurred during sign-up');
-        });
+            .then(response => {
+                console.log('Response:', response.data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     };
 
     return (
