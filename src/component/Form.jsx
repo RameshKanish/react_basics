@@ -15,13 +15,16 @@ const SimpleForm = () => {
 
         console.log("Data", data);  // Log data to verify it's correct
 
-        fetch('https://cinemate-pmv2.onrender.com/auth/signUp', {  // Use deployed backend URL
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
+        fetch('https://cinemate-pmv2.onrender.com/auth/signUp', {
+        method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', // Allow all origins (can be restricted to specific domains)
+    },
+    body: JSON.stringify(data),
+    mode: 'cors', // This explicitly enables CORS
+    credentials: 'same-origin' // If needed, include credentials like cookies (optional)
+    })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
