@@ -1,0 +1,40 @@
+/* src/styles/Seat.css */
+.seat-layout {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);  /* Customize based on your seat layout (5 seats per row) */
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.seat {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.available {
+    background-color: green;
+}
+
+.booked {
+    background-color: red;
+    text-decoration: line-through;
+}
+
+.regular {
+    background-color: gray;
+}
+
+.premium {
+    background-color: gold;
+}
+
+.vip {
+    background-color: purple;
+}
