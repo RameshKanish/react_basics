@@ -19,16 +19,12 @@ const AddMovie = () => {
     try {
       const response = await axios.post('http://localhost:8080/movie/create', data);
 
-      console.log("Respinse", response.data);
-
       if (response.data.responseStatus === 'SUCCESS') {
-        alert('Movie added successfully!');
         navigate('/'); 
       } else {
-        alert('Error occurred while adding the movie.');
+        console.log(response.data);
       }
     } catch (error) {
-      alert('Something went wrong!');
       console.error('Error adding movie:', error);
     }
   };

@@ -15,9 +15,9 @@ const ListMovies = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, []);  // Empty dependency array ensures that the effect runs only once
+  }, []);  
 
-
+// Delete movie by ID
   const handleDelete = async (id) => {
     try{
         const reponse  = await axios.delete(`http://localhost:8080/movie/${id}`)

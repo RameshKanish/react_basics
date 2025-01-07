@@ -12,17 +12,17 @@ import Header from './component/Header';
 // Import Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {
     return (
         <>
             <Header /> {/* Header with navigation */}
 
-            <Container>
+            <Container fluid>
                 <h1>Movie Booking System</h1>
-                <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="#">BookMyShow</Navbar.Brand>
+                <Navbar bg="dark" data-bs-theme="dark" expand = "lg">
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto">
+                        <Nav className="me-auto">
                             <Nav.Item>
                                 <Nav.Link as={Link} to="/add-screen">Add Screen</Nav.Link>
                             </Nav.Item>

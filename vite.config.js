@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
+import process from 'process' // Use polyfill for process
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: 'localhost',
-    port: 5173, 
+    host: '0.0.0.0',
+    port: 5173,
+  },
+  define: {
+    'process.env': process.env, // Use polyfill for process
   },
 })
