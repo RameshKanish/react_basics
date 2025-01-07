@@ -9,7 +9,7 @@ const ListMovies = () => {
 
   // Fetch the movies list from the backend
   const fetchMovies = async () => {
-    const response = await axios.get('http://localhost:8080/movie/getMovies');
+    const response = await axios.get('https://bookmyshow-backend-latest.onrender.com/movie/getMovies');
     setMovies(response.data);
   };
 
@@ -20,7 +20,7 @@ const ListMovies = () => {
 // Delete movie by ID
   const handleDelete = async (id) => {
     try{
-        const reponse  = await axios.delete(`http://localhost:8080/movie/${id}`)
+        const reponse  = await axios.delete(`https://bookmyshow-backend-latest.onrender.com/movie/${id}`)
         if(reponse){
             setMovies(movies.filter((movie) => movie.id !== id));
         }

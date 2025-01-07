@@ -17,7 +17,7 @@ const AddMovie = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/movie/create', data);
+      const response = await axios.post('https://bookmyshow-backend-latest.onrender.com/movie/create', data);
 
       if (response.data.responseStatus === 'SUCCESS') {
         navigate('/'); 
@@ -43,13 +43,18 @@ const AddMovie = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Genre</Form.Label>
-          <Form.Control
-            type="text"
-            value={genre}
-            onChange={(e) => setGenre(e.target.value)}
-            placeholder="Enter Genre"
-          />
+  <Form.Label>Genre</Form.Label>
+  <Form.Select
+    value={genre}
+    onChange={(e) => setGenre(e.target.value)}
+    aria-label="Select Genre"
+  >
+    <option value="">Select Genre</option> {/* Add default placeholder option */}
+    <option value="COMEDY">COMEDY</option>
+    <option value="ACTION">ACTION</option>
+    <option value="ROM_COM">ROM_COM</option>
+    <option value="SCI_FI">SCI_FI</option>
+  </Form.Select>
         </Form.Group>
         <Button variant="primary" type="submit">
           Add Movie
