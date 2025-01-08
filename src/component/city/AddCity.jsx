@@ -36,7 +36,7 @@ const AddCity = () => {
             name: city,
         };
 
-        const response = await axios.post(`${API_BASE_URL}/city/createCity`, data);
+        const response = await axios.post(`${API_BASE_URL}/city`, data);
         if(response.data.id){
             navigate('/city');
         }
