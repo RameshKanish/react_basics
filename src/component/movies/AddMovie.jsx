@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';  // Hook to navigate programmatically
 import axios from 'axios';
+// eslint-disable-next-line no-undef
+import { API_BASE_URL } from './../../../config';
 
 const AddMovie = () => {
   const [movieName, setMovieName] = useState('');
@@ -17,7 +19,8 @@ const AddMovie = () => {
     };
 
     try {
-      const response = await axios.post('https://bookmyshow-backend-latest.onrender.com/movie/create', data);
+      // const response = await axios.post('https://bookmyshow-backend-latest.onrender.com/movie/create', data);
+      const response = await axios.post(`${API_BASE_URL}/movie/create`, data);
 
       if (response.data.responseStatus === 'SUCCESS') {
         navigate('/'); 

@@ -3,10 +3,11 @@ import { Routes, Route, Link } from 'react-router-dom'; // No need for Router he
 import './App.css';
 
 // Import your components
-import AddMovieList from './component/AddMovieList';
-import AddList from './component/AddMovie';
-
-
+import AddMovieList from './component/Movies/AddMovieList';
+import AddList from './component/Movies/AddMovie';
+import AddCity from './component/city/AddCity';
+import CityList from './component/city/CityList';
+import city from './component/city/AddCity';
 import Header from './component/Header';
 
 // Import Bootstrap CSS
@@ -44,6 +45,10 @@ function App() {
                         <Routes>
                             <Route path="/" element={<AddMovieList />} />
                             <Route path="/add-movie" element={<AddList />} />
+
+                            <Route path="/add-city" element={<AddCity />} />
+                            <Route path="/city" element={<CityList />} />
+
                             <Route path="/" element={<h2>Welcome to BookMyShow Admin Panel</h2>} />
                             <Route path="*" element={<h3>Page not found!</h3>} />
                         </Routes>
