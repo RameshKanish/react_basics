@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { API_BASE_URL } from './../../../config';
+
 
 const AddCity = () => {
     const [city, setCity] = useState('');
@@ -37,7 +38,7 @@ const AddCity = () => {
         };
 
         console.log("API_BASE_URL" , API_BASE_URL);
-        
+
         const response = await axios.post(`${API_BASE_URL}/city`, data);
 
         if(response.data.id){
