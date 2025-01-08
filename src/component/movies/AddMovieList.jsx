@@ -22,6 +22,8 @@ const ListMovies = () => {
 // Delete movie by ID
   const handleDelete = async (id) => {
     try{
+      console.log("API.........." , API_BASE_URL);
+      
         // const reponse  = await axios.delete(`https://bookmyshow-backend-latest.onrender.com/movie/${id}`)
         const reponse  = await axios.delete(`${API_BASE_URL}/movie/${id}`)
         if(reponse){
