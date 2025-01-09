@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom'; // No need for Router he
 import './App.css';
 
 // Import your components
-import AddMovieList from './component/Movies/AddMovieList';
+import AddMovieList from './component/movies/AddMovieList';
 import AddList from './component/movies/AddMovie';
 import AddCity from './component/city/AddCity';
 import CityList from './component/city/CityList';
