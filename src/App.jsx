@@ -3,12 +3,15 @@ import { Routes, Route, Link } from 'react-router-dom'; // No need for Router he
 import './App.css';
 
 // Import your components
-import AddMovieList from './component/movies/AddMovieList';
+import AddMovieList from './component/Movies/AddMovieList';
 import AddList from './component/movies/AddMovie';
 import AddCity from './component/city/AddCity';
 import CityList from './component/city/CityList';
 import city from './component/city/AddCity';
 import Header from './component/Header';
+import SeatSelection from './component/theatre/SeatSelection';
+import SignIn from './component/user/SignIn';
+import SignUp from './component/user/SignUp';
 
 // Import Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,7 +37,7 @@ function App() {
                                 <Nav.Link as={Link} to="/add-theatre">Add Theatre</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link as={Link} to="/seat-display">Display Theatre</Nav.Link>
+                                <Nav.Link as={Link} to="/seat-display">Display Seat</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
@@ -43,11 +46,18 @@ function App() {
                 <Row>
                     <Col sm={12} md={6} lg={8}>
                         <Routes>
-                            <Route path="/" element={<AddMovieList />} />
-                            <Route path="/add-movie" element={<AddList />} />
+                            <Route path="/" element={<SignUp />} />
+                            <Route path="/sign-in" element={<SignIn />} />
+                            <Route path="/add-m" element={<AddMovieList />} />
+                            <Route path="/movies" element={<AddList />} />
 
                             <Route path="/add-city" element={<AddCity />} />
                             <Route path="/city" element={<CityList />} />
+
+                            {/* Add more routes here */}
+
+                            <Route path='/seat-display' element={<SeatSelection />} />
+
 
                             <Route path="/" element={<h2>Welcome to BookMyShow Admin Panel</h2>} />
                             <Route path="*" element={<h3>Page not found!</h3>} />

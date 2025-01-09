@@ -1,54 +1,55 @@
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Card, Col, Row } from 'react-bootstrap';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CityList = () => {
-    const navigate = useNavigate();
     const [cities, setCities] = useState([]); // Keep track of the list of cities
 
-    // Fetch the list of cities when the component is mounted
     useEffect(() => {
         const fetchCity = async () => {
             try {
                 const cityResponse = await axios.get(`${API_BASE_URL}/city`);
-                console.log(cityResponse.data);
-                setCities(cityResponse.data); // Set the cities in state
+                console.log(cityResponse);
+                setCities(cityResponse.data); // Extract 'data' from the response
             } catch (error) {
-                console.error("Error fetching cities:", error);
+                console.error('Error fetching cities:', error);
             }
         };
         fetchCity();
     }, []);
 
-    // Redirect to the Add City page
-    const handleAddCityClick = () => {
-        navigate('/city'); // Replace this with your actual route to create city
-    };
-
     return (
         <div className="container mt-5">
             <h3>City List</h3>
-
-            {/* Button to navigate to Add City page */}
-            <Button variant="primary" className="mb-4" onClick={handleAddCityClick}>
-                Add City
-            </Button>
-
-            {/* Display the list of cities */}
-            {cities.length > 0 ? (
-                <ul>
-                    {cities.map((city, index) => (
-                        <li key={index}>{city.name}</li> // Adjust this field as per API response
-                    ))}
-                </ul>
-            ) : (
-                <p>No cities available.</p>
-            )}
+    
+            { /* Display the list of cities */ }
+            <Row xs={1} md={2} lg={3} className="g-4">
+                {cities.length > 0 ? (
+                    cities
+                        .filter((value, index, self) => 
+                            index === self.findIndex((t) => (
+                                t.name === value.name // Use `id` or other unique identifier to filter duplicates
+                            ))
+                        )
+                        .map((city) => {
+                            return (
+                                <Col key={city.id}>
+                                    <Card>
+                                        <Card.Body>
+                                            <Card.Title>{city.name}</Card.Title>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            );
+                        })
+                ) : (
+                    <p>No Cities Found</p>
+                )}
+            </Row>
         </div>
-    );
+    );    
 };
 
 export default CityList;
