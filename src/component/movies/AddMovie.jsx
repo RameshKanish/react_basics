@@ -23,7 +23,7 @@ const AddMovie = () => {
       const response = await axios.post(`${API_BASE_URL}/movie/create`, data);
 
       if (response.data.responseStatus === 'SUCCESS') {
-        navigate('/'); 
+        navigate('/movies'); 
       } else {
         console.log(response.data);
       }

@@ -16,14 +16,10 @@ function Header() {
                     <Nav.Item>
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/seat-display">Display Theatre</Nav.Link>
-                    </Nav.Item>
                     {/* Add other links as necessary */}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     );
 }
-
 export default Header;

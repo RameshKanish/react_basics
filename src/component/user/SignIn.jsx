@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { API_BASE_URL } from './../../../config';
 
-const SignIn = () => {
+// eslint-disable-next-line react/prop-types
+const SignIn = ({setIsAuthenticated}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSignIn = async (event) => {
-    event.preventDefault(); // Prevents the default form submission behavior
+    event.preventDefault(); 
 
     const data = {
       email: email,
@@ -21,7 +22,10 @@ const SignIn = () => {
       const response = await axios.post(`${API_BASE_URL}/auth/signIn`, data);
 
       if (response.data.responseStatus === "SUCCESS") {
-        navigate('/add-m'); // Navigate to the desired route upon successful login
+        setIsAuthenticated(true);
+        localStorage.setItem("isAuthenticated", true);
+        navigate('/dashboard'); // Navigate to the desired route upon successful login
+
       } else {
         alert('Invalid Credentials');
       }
@@ -30,6 +34,10 @@ const SignIn = () => {
       console.error("Sign-in error:", error); // Log the error for debugging purposes
     }
   };
+  const handleSignUp = () => {
+    navigate('/sign-up');
+  }
+
 
   return (
     <div className="mt-5">
@@ -57,7 +65,8 @@ const SignIn = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="mt-3">
+
+        <Button variant="primary" onClick={handleSignUp}>
           Sign In
         </Button>
       </Form>

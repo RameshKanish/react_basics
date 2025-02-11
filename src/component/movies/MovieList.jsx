@@ -10,7 +10,6 @@ const ListMovies = () => {
 
   // Fetch the movies list from the backend
   const fetchMovies = async () => {
-    // const response = await axios.get('https://bookmyshow-backend-latest.onrender.com/movie/getMovies');
     const response = await axios.get(`${API_BASE_URL}/movie/getMovies`);
     setMovies(response.data);
   };
@@ -22,9 +21,6 @@ const ListMovies = () => {
 // Delete movie by ID
   const handleDelete = async (id) => {
     try{
-      console.log("API.........." , API_BASE_URL);
-      
-        // const reponse  = await axios.delete(`https://bookmyshow-backend-latest.onrender.com/movie/${id}`)
         const reponse  = await axios.delete(`${API_BASE_URL}/movie/${id}`)
         if(reponse){
             setMovies(movies.filter((movie) => movie.id !== id));

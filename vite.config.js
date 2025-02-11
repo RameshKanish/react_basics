@@ -9,6 +9,6 @@ export default defineConfig({
     port: 5173,
   },
   define: {
-    'process.env': process.env, // Use polyfill for process
+    'process.env': process.env,
   },
 })
