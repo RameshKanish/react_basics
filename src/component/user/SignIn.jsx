@@ -27,6 +27,7 @@ const SignIn = ({setIsAuthenticated}) => {
         navigate('/dashboard'); // Navigate to the desired route upon successful login
 
       } else {
+        
         alert('Invalid Credentials');
       }
     } catch (error) {
@@ -34,10 +35,6 @@ const SignIn = ({setIsAuthenticated}) => {
       console.error("Sign-in error:", error); // Log the error for debugging purposes
     }
   };
-  const handleSignUp = () => {
-    navigate('/sign-up');
-  }
-
 
   return (
     <div className="mt-5">
@@ -65,10 +62,10 @@ const SignIn = ({setIsAuthenticated}) => {
           />
         </Form.Group>
 
-
-        <Button variant="primary" onClick={handleSignUp}>
+        <Button variant="primary" type="submit" className="mt-3">
           Sign In
         </Button>
+
       </Form>
     </div>
   );
