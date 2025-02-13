@@ -2,53 +2,63 @@ import axios from "axios";
 import { useState } from "react";
 import { API_BASE_URL } from "./../../../config";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form, Alert, Spinner } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null); // State to handle error messages
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSignIn = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    setLoading(true);
 
-    const data = {
-      name: name,
-      email: email,
-      password: password,
-    };
+    const data = { name, email, password };
 
     try {
       const response = await axios.post(`${API_BASE_URL}/auth/signUp`, data);
 
       if (response.status === 200 && response.data.responseStatus === "SUCCESS") {
-        // Navigate to sign-in upon successful signup
+        // toast.success("✅ Check your email!", {
+        //   position: "top-right",
+        //   autoClose: 3000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        // });
+        alert("✅ Check your email!");
         navigate("/sign-in");
       } else {
         setError(response.data.message || "Sign-up failed. Please try again.");
       }
     } catch (error) {
       setError("Something went wrong while signing up. Please try again.");
-      console.error("Sign-up error:", error); // Log the error for debugging purposes
+      console.error("Sign-up error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="mt-5">
+      <ToastContainer />
       <h3>Sign Up</h3>
+      {error && <Alert variant="danger">{error}</Alert>}
 
-      {error && <Alert variant="danger">{error}</Alert>} {/* Display errors */}
-
-      <Form onSubmit={handleSignIn}>
+      <Form onSubmit={handleSignUp}>
         <Form.Group controlId="formEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </Form.Group>
@@ -59,7 +69,7 @@ const SignUp = () => {
             type="password"
             placeholder="Enter password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </Form.Group>
@@ -67,18 +77,28 @@ const SignUp = () => {
         <Form.Group controlId="formName">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            type="text" // Use a valid input type
-            placeholder="Enter the name"
+            type="text"
+            placeholder="Enter name"
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="mt-3">
-          Sign Up
+        <Button variant="primary" type="submit" className="mt-3" disabled={loading}>
+          {loading ? (
+            <>
+              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+              {" "} Signing Up...
+            </>
+          ) : (
+            "Sign Up"
+          )}
         </Button>
       </Form>
+
+      {/* Toast Notifications */}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar closeOnClick />
     </div>
   );
 };
