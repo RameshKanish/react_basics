@@ -1,25 +1,34 @@
 // src/components/Header.js
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Header() {
     return (
-        <Navbar bg="primary" data-bs-theme="dark">
-            
-            <Navbar.Brand href="#">
-                <span style={{ color: '#ba0202' , fontWeight: 'bold' ,}}> Book </span>
-                <span style={{ color: '#ffffff' }}>MyShow</span>
-            </Navbar.Brand>
+        <Navbar bg="primary" variant="dark" expand="lg">
+            <Container>
+                {/* Brand Logo */}
+                <Navbar.Brand as={Link} to="/" className="fw-bold">
+                    <span style={{ color: '#ba0202', fontWeight: 'bold', fontSize: '22px', letterSpacing: '1px' }}>Book</span>
+                    <span style={{ color: '#ffffff', fontSize: '22px', letterSpacing: '1px' }}>MyShow</span>
+                </Navbar.Brand>
 
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
-                    </Nav.Item>
-                    {/* Add other links as necessary */}
-                </Nav>
-            </Navbar.Collapse>
+                {/* Toggle Button for Mobile */}
+                <Navbar.Toggle aria-controls="navbar-nav" />
+
+                {/* Navbar Items */}
+                <Navbar.Collapse id="navbar-nav">
+                    <Nav className="ms-auto">
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="/" className="fw-semibold">
+                                Home
+                            </Nav.Link>
+                        </Nav.Item>
+                        {/* Add more links here */}
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
         </Navbar>
     );
 }
+
 export default Header;

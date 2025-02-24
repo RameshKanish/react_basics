@@ -37,7 +37,7 @@ const AddCity = () => {
             name: city,
         };
 
-
+        console.log("URL", API_BASE_URL);
         const response = await axios.post(`${API_BASE_URL}/city`, data);
 
         if(response.data.id){

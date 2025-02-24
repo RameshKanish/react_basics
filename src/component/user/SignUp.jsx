@@ -3,7 +3,7 @@ import { useState } from "react";
 import { API_BASE_URL } from "./../../../config";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Alert, Spinner } from "react-bootstrap";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { API_BASE_URL } from './../../../config';
 
 // eslint-disable-next-line react/prop-types
@@ -9,6 +9,7 @@ const SignIn = ({setIsAuthenticated}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSignIn = async (event) => {
     event.preventDefault(); 
@@ -62,8 +63,15 @@ const SignIn = ({setIsAuthenticated}) => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className="mt-3">
-          Sign In
+        <Button variant="primary" type="submit" className="mt-3" disabled={loading}>
+          {loading ? (
+            <>
+              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+              {" "} Sign In...
+            </>
+          ) : (
+            "Sign Up"
+          )}
         </Button>
 
       </Form>
